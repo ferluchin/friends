@@ -1,13 +1,14 @@
+<% if user_signed_in? %>
+
 <table class="table table-striped table-bordered table-hover">
   <thead class="table-dark">
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
+      <th>Name</th>
+
       <th>Email</th>
       <th>Phone</th>
       <th>Twitter</th>
-      <th>User Id</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -15,15 +16,12 @@
     <% @friends.each do |friend| %>
       <% if friend.user == current_user %>
         <tr>
-          <td><%= friend.first_name %></td>
-          <td><%= friend.last_name %></td>
+          <td>
+<%= link_to friend.first_name + '' friend/last_name, friend %>
+          </td>
           <td><%= friend.email %></td>
           <td><%= friend.phone %></td>
           <td><%= friend.twitter %></td>
-          <td><%= friend.user_id %></td>
-
-          <td><%= link_to 'Show', friend, class:'btn btn-success' %></td>
-
           <td><%= link_to 'Edit', edit_friend_path(friend), class:'btn btn-warning' %></td>
 
           <td><%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' } , class:'btn btn-danger' %></td>
@@ -35,3 +33,10 @@
 </table>
 
 <%= link_to 'New Friend', new_friend_path, class:"btn btn-secondary" %>
+<% else %>
+
+<h1>Hola Mundo </h1>
+
+First rails Page
+
+<% end %>
